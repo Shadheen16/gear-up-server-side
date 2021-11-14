@@ -26,7 +26,7 @@ const run = async () => {
         await client.connect();
         console.log("datebase connected successfully");
 
-        const database = client.db("on-the-go");
+        const database = client.db("geary");
         const productCollection = database.collection("products");
         const orderCollection = database.collection("orders");
 
@@ -50,6 +50,7 @@ const run = async () => {
         //post api
         app.post('/products', async (req, res) => {
             console.log('api hitted')
+            console.log(req.body)
             const product = req.body;
             const result = await productCollection.insertOne(product);
             res.send(`A document was inserted with the _id: ${result.insertedId}`);
